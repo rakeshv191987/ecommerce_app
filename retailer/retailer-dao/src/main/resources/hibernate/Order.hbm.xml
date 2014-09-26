@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.bostonretailer.retailercommon.Order" table="order">
+        <id name="orderId" type="java.lang.Long">
+			<column name="order_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+        
+        <one-to-one name="customer"
+			class="com.bostonretailer.retailercommon.Customer" cascade="all" />
+			
+		<property name="refOrderStatus" column="order_status" >
+			<type name="org.hibernate.type.EnumType">
+			<param name="enumClass">com.bostonretailer.retailercommon.RefOrderStatus</param>
+			<param name="type">12</param>
+			</type>
+        </property>
+			
+		<property name="dateOrderPlaced" type="java.util.Date">
+			<column name="date_order_placed" not-null="true" unique="false" />
+		</property>
+		<property name="orderDetails" type="string">
+			<column name="order_details" not-null="true" unique="false" />
+		</property>
+		<property name="dateOrderExpectedDelivery" type="java.util.Date">
+			<column name="date_order_expected_delivery" not-null="true" unique="false" />
+		</property>
+		<property name="dateOrderDelivery" type="java.util.Date">
+			<column name="date_order_delivery" not-null="true" unique="false" />
+		</property>
+		<one-to-one name="orderAddress"
+			class="com.bostonretailer.retailercommon.Address" cascade="all" />
+		<one-to-one name="invoice"
+			class="com.bostonretailer.retailercommon.Invoice" cascade="all" />
+		<one-to-one name="shipment"
+			class="com.bostonretailer.retailercommon.Shipment" cascade="all" />
+		<list name="orderItem" table="order_item" inverse="true" cascade="all">
+ 			<key column="order_id"  />
+        	<list-index column="idx" />
+ 			<one-to-many class="com.bostonretailer.retailercommon.OrderItems" />
+        </list>
+    </class>
+</hibernate-mapping>

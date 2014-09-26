@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.ShoppingCart"
+		table="shopping_cart">
+
+		<id name="shoppingCartId" type="java.lang.Long">
+			<column name="shopping_cart_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="customer"
+			class="com.bostonretailer.retailercommon.Customer" fetch="select"
+			column="customer_id" unique="true">
+		</many-to-one>
+
+		<list name="shoppingCartProducts" table="shopping_cart_product"
+			cascade="all">
+			<key column="shopping_cart_id" />
+			<list-index column="idx" />
+			<one-to-many class="com.bostonretailer.retailercommon.ShoppingCartProduct" />
+		</list>
+	</class>
+</hibernate-mapping>

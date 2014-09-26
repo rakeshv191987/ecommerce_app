@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.Address" table="address">
+
+		<id name="addressId" type="java.lang.Long">
+			<column name="address_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+
+		<property name="addressLine1" type="string">
+			<column name="address_line_1" length="200" not-null="true"
+				unique="false" />
+		</property>
+		<property name="addressLine2" type="string">
+			<column name="address_line_2" length="200" not-null="true"
+				unique="false" />
+		</property>
+		<property name="city" type="string">
+			<column name="city" length="50" not-null="true" unique="false" />
+		</property>
+		<property name="country" type="string">
+			<column name="country" length="50" not-null="true" unique="false" />
+		</property>
+		<property name="zipCode" type="java.lang.Long">
+			<column name="zip_code" length="5" not-null="true" unique="false" />
+		</property>
+	</class>
+</hibernate-mapping>

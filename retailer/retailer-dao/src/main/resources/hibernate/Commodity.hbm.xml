@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.Commodity" table="commodity">
+
+		<id name="commodityId" type="java.lang.Long">
+			<column name="commodity_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="vendor"
+			class="com.bostonretailer.retailercommon.Vendor" column="vendor_id"
+			fetch="select" />
+		<many-to-one name="product"
+			class="com.bostonretailer.retailercommon.Product" column="product_id"
+			fetch="select" />
+		<property name="commodityName" type="string">
+			<column name="commodity_name" not-null="true" unique="false" />
+		</property>
+		<property name="commodityColor" type="string">
+			<column name="commodity_color" not-null="true" unique="false" />
+		</property>
+		<property name="commoditySize" type="int">
+			<column name="commodity_size" not-null="true" unique="false" />
+		</property>
+		<property name="commodityQuantity" type="int">
+			<column name="commodity_quantity" not-null="true" unique="false" />
+		</property>
+		<property name="commodityStatusCode" column="commodity_status_code">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.bostonretailer.retailercommon.AuthStatusCode</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<property name="commodityPrice" type="java.lang.Float">
+			<column name="commodity_price" not-null="true" unique="false" />
+		</property>
+		<property name="commodityDesc" type="string">
+			<column name="commodity_desc" not-null="true" unique="false" />
+		</property>
+	</class>
+</hibernate-mapping>

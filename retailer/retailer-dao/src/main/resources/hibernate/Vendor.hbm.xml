@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.Vendor" table="vendor">
+
+		<id name="vendorId" type="java.lang.Long">
+			<column name="vendor_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+
+		<property name="vendorName" type="string">
+			<column name="vendor_name" not-null="true" unique="false" />
+		</property>
+		<property name="displayName" type="string">
+			<column name="display_name" not-null="true" unique="false" />
+		</property>
+
+		<many-to-one name="businessAddress" column="address_id"
+			unique="true" class="com.bostonretailer.retailercommon.Address" />
+		<property name="phoneNumber" type="string">
+			<column name="phone_number" not-null="true" unique="true" />
+		</property>
+		<property name="emailAddress" type="string">
+			<column name="email_address" not-null="true" unique="true" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" not-null="true" unique="false" />
+		</property>
+		<property name="bankAccountNumber" type="string">
+			<column name="bank_account_number" not-null="true" unique="true" />
+		</property>
+		<list name="commodities" table="commodity" inverse="false"
+			cascade="all" fetch="select">
+			<key column="vendor_id" />
+			<list-index column="idx" />
+			<one-to-many class="com.bostonretailer.retailercommon.Commodity" />
+		</list>
+		<property name="vendorAuthStatusCode" column="vendor_auth_status_code">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.bostonretailer.retailercommon.AuthStatusCode</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+	</class>
+</hibernate-mapping>

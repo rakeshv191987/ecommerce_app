@@ -1,0 +1,4 @@
+Features to be implemented later:
+
+1) ID table for Id's - Maintain a separate table for customer ID's called Identity(or something), then fetch the last id from that table to give a new id for a customer. This is done to bypass the DB from picking the next id even if the previous id was deleted. Basically to have a continuous flow of id's
+2) Password encrypt  - http://dev.mysql.com/doc/refman/5.1/en/encryption-functions.html#function_password

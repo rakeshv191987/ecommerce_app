@@ -1,0 +1,14 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- Import DAO's App context file -->
+	<import resource="classpath:retailer-dao-application-context.xml"/>
+	
+	<!-- Beans Declaration -->
+	<import resource="classpath:spring/config/CustomerService.xml"/>
+	<import resource="classpath:spring/config/VendorService.xml"/>
+	<import resource="classpath:spring/config/AdminService.xml"/>
+	
+</beans>

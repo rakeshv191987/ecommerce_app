@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- Import Common's App context file -->
+	<import resource="classpath:retailer-common-application-context.xml"/>
+	
+ 	<!-- Database Configuration -->
+	<import resource="classpath:hibernate/DataSource.xml"/>
+	<import resource="classpath:hibernate/Hibernate.xml"/>
+ 
+	<!-- Beans Declaration -->
+	<import resource="classpath:spring/config/Customer.xml"/>
+	<import resource="classpath:spring/config/CustomerPaymentOption.xml"/>
+	<import resource="classpath:spring/config/ShoppingCart.xml"/>
+	<import resource="classpath:spring/config/ShoppingCartProduct.xml"/>
+	<import resource="classpath:spring/config/WishList.xml"/>
+	<import resource="classpath:spring/config/WishListProduct.xml"/>
+	<import resource="classpath:spring/config/Vendor.xml"/>
+	<import resource="classpath:spring/config/Commodity.xml"/>
+	<import resource="classpath:spring/config/Product.xml"/>
+	<import resource="classpath:spring/config/Order.xml"/>
+	<import resource="classpath:spring/config/Invoice.xml"/>
+	<import resource="classpath:spring/config/Shipment.xml"/>
+	<import resource="classpath:spring/config/OrderItems.xml"/>
+	<import resource="classpath:spring/config/Payment.xml"/>
+	<import resource="classpath:spring/config/Address.xml"/>
+ 
+</beans>

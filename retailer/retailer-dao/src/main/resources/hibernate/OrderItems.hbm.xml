@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.bostonretailer.retailercommon.OrderItems" table="order_items">
+        <id name="orderItemId" type="java.lang.Long">
+			<column name="order_item_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="order" class="com.bostonretailer.retailercommon.Order" fetch="select">
+            <column name="order_id" not-null="true" />
+        </many-to-one>
+		<one-to-one name="item" class="com.bostonretailer.retailercommon.Product" >
+		</one-to-one>
+		<property name="orderItemQuantity" type="int">
+			<column name="order_item_quantity" not-null="true" unique="false" />
+		</property>
+		<property name="orderItemPrice" type="java.lang.Float">
+			<column name="order_item_price" not-null="true" unique="false" />
+		</property>
+		<property name="orderItemDetails" type="string">
+			<column name="order_item_details" not-null="true" unique="false" />
+		</property>
+	</class>
+</hibernate-mapping>

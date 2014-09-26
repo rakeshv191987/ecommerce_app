@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.Shipment" table="shipment">
+
+		<id name="shipmentTrackingNumber" type="java.lang.Long">
+			<column name="shipment_tracking_number" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+		
+		<one-to-one name="order"
+			class="com.bostonretailer.retailercommon.Order" cascade="all" />
+		<property name="shipmentDate" type="java.util.Date">
+			<column name="shipment_date" not-null="true" unique="false" />
+		</property>	
+		<property name="dateOrderDelivered" type="java.util.Date">
+			<column name="date_order_delivered" not-null="true" unique="false" />
+		</property>	
+		<property name="otherShipmentDetails" type="string">
+			<column name="other_shipment_details" not-null="true" unique="false" />
+		</property>	
+	</class>
+</hibernate-mapping>

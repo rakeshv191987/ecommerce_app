@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.Customer" table="customer">
+		<id name="customerId" type="java.lang.Long">
+			<column name="customer_id" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+
+		<property name="gender" type="string">
+			<column name="gender" length="6" not-null="true" unique="false" />
+		</property>
+		<property name="firstName" type="string">
+			<column name="first_name" length="50" not-null="true" unique="false" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="last_name" length="50" not-null="true" unique="false" />
+		</property>
+		<property name="emailAddress" type="string">
+			<column name="email_address" length="50" not-null="true"
+				unique="true" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" length="50" not-null="true" unique="false" />
+		</property>
+		<property name="phoneNumber" type="string">
+			<column name="phone_number" length="10" not-null="true"
+				unique="true" />
+		</property>
+		<many-to-one name="address" column="address_id"
+			class="com.bostonretailer.retailercommon.Address" cascade="all" />
+
+<!-- 		<list name="customerPaymentOption" table="customer_payment_option"
+			cascade="all">
+			<key column="customer_id" />
+			<list-index column="idx" />
+			<one-to-many
+				class="com.bostonretailer.retailercommon.CustomerPaymentOption" />
+		</list>
+
+		<list name="orders" table="order" cascade="all">
+			<key column="customer_id" />
+			<list-index column="idx" />
+			<one-to-many class="com.bostonretailer.retailercommon.Order" />
+		</list> -->
+
+<!-- 		<many-to-one name="shoppingCart" column="customer_id"
+			unique="true" class="com.bostonretailer.retailercommon.ShoppingCart"
+			cascade="all" />
+		<many-to-one name="wishList" column="customer_id" unique="true"
+			class="com.bostonretailer.retailercommon.WishList" cascade="all" /> -->
+	</class>
+</hibernate-mapping>

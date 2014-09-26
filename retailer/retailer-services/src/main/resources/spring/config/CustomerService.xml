@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	
+   <bean id="customerBOService" class="com.bostonretailer.retailerservices.CustomerBOServiceImpl" >
+   		<!-- Customer Service Data Access Object -->
+   		<property name="customerDao" ref="customerDao"></property>
+   		
+   		<!-- Customer Payment Service Data Access Object -->
+   		<property name="customerPaymentOptionDao" ref="customerPaymentOptionDao"></property>
+   		
+   		<!-- Shopping Cart Data Access Object -->
+   		<property name="shoppingCartDao" ref="shoppingCartDao"></property>
+   		
+   		<!-- Shopping Cart Product Data Access Object -->
+   		<property name="shoppingCartProductDao" ref="shoppingCartProductDao"></property>
+   		
+   		<!-- Wish List Data Access Object -->
+   		<property name="wishListDao" ref="wishListDao"></property>
+   		
+   		<!-- Wish List Product Data Access Object -->
+   		<property name="wishListProductDao" ref="wishListProductDao"></property>
+   		
+   		<!-- Order Data Access Object -->
+   		<property name="orderDao" ref="orderDao"></property>
+   		
+   		<!-- Invoice Data Access Object -->
+   		<property name="invoiceDao" ref="invoiceDao"></property>
+   		
+   		<!-- Order Items Data Access Object -->
+   		<property name="orderItemsDao" ref="orderItemsDao"></property>
+   		
+   		<!-- Payment Data Access Object -->
+   		<property name="paymentDao" ref="paymentDao"></property>
+   		
+   		<!-- Payment Data Access Object -->
+   		<property name="productDao" ref="productDao"></property>
+   		
+   		<!-- Address Service Data Access Object -->
+   		<property name="addressDao" ref="addressDao"></property>
+   		
+   </bean>
+</beans>

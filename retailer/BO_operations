@@ -1,0 +1,179 @@
+CUSTOMER:
+
+CUSTOMER PROFILE:
+1) create
+2) update
+3) delete - Ask the service provide to close account
+
+TABLES HIT:
+1) Customer
+
+CUSTOMER PAYMENT:
+Customer can add multiple payment methods.
+1) Add Customer Payment method
+2) update Customer Payment method
+3) delete Customer Payment method
+
+TABLES HIT:
+1) Customer_Payment_Option
+
+CUSTOMER SHOPPING CARTS:
+
+Search for items from 'Products' table.
+
+1) Add items to cart
+2) delete items from cart
+3) update cart
+
+TABLES HIT:
+1) Shopping_Cart_Products
+
+CUSTOMER WISH LIST:
+
+Search for items from 'Products' table.
+
+1) Add items to list
+2) delete items from list
+3) update list
+
+TABLES HIT:
+1) Wish_List_Products
+
+CUSTOMER CHECKOUT AND PLACE ORDER:
+When the customer checks out, a lot of actions take place in the background and most of it should be automated on checkout click.
+
+On check out, the Customer is led to a page which shows the order summary and shipping address(Customer registered address-Customer.address-is shown here. Could also ship to a different address. This shipping address is stored in 'Shipments' TABLE). Also a button for place order is shown. 
+
+CHECK-OUT:
+1) Change shipping address
+2) add/increase quantity of items in cart
+3) delete items from the cart
+4) Change/update payment method - add a new card
+
+TABLES-HIT:
+1) Shopping_Cart_Products
+2) Customer_Payment_Methods
+
+
+PLACE-ORDER:
+When this button is clicked, the customer payment info is authenticated using a spring web-service. Once the payment info is successfully authenticated, the following table will be hit and a note is presented to the Customer at the end.
+
+TABLES-HIT:
+When the 'Place Order' button is clicked, a row is created in 
+1) Orders - Add the shipping address, entered by Customer/default address to Orders.Address. order_status_code will by default be 'To be shipped soon'
+2) Products - reduce quantity in 'Products' table
+3) Invoices
+4) Payments
+5) Order_Items
+
+
+VENDOR:
+
+A vendor adds himself by logging in and then waits for admin authentication.
+
+Vendor Profile:
+1) Create profile 
+2) update profile
+3) delete profile
+
+TABLES-HIT:
+1) Vendor
+
+After the vendor has been approved by admin,
+
+VENDOR ADD PRODUCTS:
+1) Add commodity (include all other details)
+
+TABLES-HIT:
+1) Commodity
+
+In the future, the approved Vendor can add commodities directly to the 'Commodity' table.
+
+VENDOR DELETE PRODUCTS:
+1) Delete Commodity
+
+TABLES-HIT:
+1) Commodity
+
+
+
+ADMIN:
+
+With respect to CUSTOMER:
+
+CUSTOMER PROFILE:
+1) update
+2) delete
+3) Find Customer(findbyCustomerId)
+
+TABLES HIT:
+1) Customer
+
+ORDER STATUS:
+1) Change order status from 'to be shipped' - 'shipped' - 'Delivered'
+2) Shipments - Add the shipping address, entered by Customer/default address to Shipments.Address 
+
+TABLES HIT:
+1) Orders
+2) Shipments
+
+
+With respect to VENDOR:
+
+VENDOR APPROVAL STATUS:
+1) Change status of Vendor from - 'Pending' - 'approved'/'not approved'
+
+TABLES HIT:
+1) Vendor
+
+COMMODITY STATUS:
+1) Change status of commodity added by Vendor from - 'Pending' - 'approved'/'not approved'
+
+
+TABLES HIT:
+If not approved, only
+1) Commodity
+When the Commodity.approved_status_code is approved:
+2) Products
+Quantity from Commodity is directly added to Products, if the product exists in the 'Products' table. Else the admin creates a new product with appropriate category and details. 
+
+
+Adding new Ref Codes:
+
+CREATE NEW PRODUCT TYPE:
+1) Add new product type under 'Ref_Product_Types'
+2) delete product type under 'Ref_Product_Types'
+3) update product type under 'Ref_Product_Types'
+4) Update products - updates products with an appropriate type
+
+TABLES HIT:
+1) Ref_Product_Types
+2) Products
+
+
+
+
+
+
+
+
+
+
+LATER:
+
+Products sold by BostonRetailer
+
+ADD PRODUCTS:
+1) Add products from 'Commodity' to 'Products' under a particular product type.
+-- This increases quantity in 'Products' and decreases quantity in 'Commodity'
+
+TABLES HIT:
+1) Commodity
+2) Products
+
+
+
+
+
+
+

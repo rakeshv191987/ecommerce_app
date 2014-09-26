@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.bostonretailer.retailercommon.Invoice" table="order">
+    	<id name="invoiceNumber" type="java.lang.Long">
+			<column name="invoice_number" />
+			<!-- Use of native is best as it uses which ever strategy is default in 
+				the user DB -->
+			<generator class="native" />
+		</id>
+		
+		<one-to-one name="order"
+			class="com.bostonretailer.retailercommon.Order" cascade="all" />
+			
+		<property name="invoiceDate" type="java.util.Date">
+			<column name="invoice_date" not-null="true" unique="false" />
+		</property>
+		<property name="invoiceDetails" type="string">
+			<column name="invoice_details	" not-null="true" unique="false" />
+		</property>
+		<one-to-one name="payment" 
+			class="com.bostonretailer.retailercommon.Payment" cascade="all" />
+	</class>
+</hibernate-mapping>

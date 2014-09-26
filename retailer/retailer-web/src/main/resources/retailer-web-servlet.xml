@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- the application context definition for the retailer-web DispatcherServlet -->
+	<import resource="classpath:retailer-web-application-context.xml" />
+	<import resource="classpath:messages.properties" />
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+    
+	<bean name="/home" class="com.bostonretailer.retailercontroller.HomeController" >
+		<property name="adminBOService" ref="adminBOService"></property>
+	</bean>	
+	
+	<bean name="/createaccount.htm" class="com.bostonretailer.retailercontroller.CustomerRegistrationController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="customer"/>
+        <property name="commandClass" value="com.bostonretailer.retailercommon.Customer"/>
+        <property name="validator">
+            <bean class="com.bostonretailer.retailercontroller.CustomerRegistrationValidator"/>
+        </property>
+        <property name="formView" value="customerregistration"/>
+        <property name="successView" value="welcome"/>
+        <property name="customerBOService" ref="customerBOService"/>
+    </bean>
+    
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

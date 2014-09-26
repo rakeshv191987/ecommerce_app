@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bostonretailer.retailercommon.CustomerPaymentOption"
+		table="customer_payment_option">
+
+		 <id name="customerPaymentOptionId" type="java.lang.Long">
+            <column name="customer_payment_option_id" />
+            <!--  Use of native is best as it uses which ever strategy is default in the user DB -->
+            <generator class="native" />  
+        </id>
+        <many-to-one name="customerId" class="com.bostonretailer.retailercommon.Customer" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <property name="paymentMethod" column="payment_method" >
+			<type name="org.hibernate.type.EnumType">
+			<param name="enumClass">com.bostonretailer.retailercommon.RefPaymentMethod</param>
+			<param name="type">12</param>
+			</type>
+        </property>
+        
+		<property name="cardNumber" type="string">
+			<column name="card_number" length="20" not-null="true" unique="true" />
+		</property>
+		<property name="paymentMethodDetails" type="string">
+			<column name="payment_method_details" length="200" not-null="true" unique="false" />
+		</property>
+
+	</class>
+</hibernate-mapping>
+		
